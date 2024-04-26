@@ -11,7 +11,8 @@ on:
         type: choice
         options:
         - dev
-        - qa        
+        - qa
+        - main
 jobs:
   envbranch:
     runs-on: ubuntu-latest
