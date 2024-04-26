@@ -3,8 +3,12 @@ on:
   workflow_dispatch:
     inputs:
       branch_name:
-        description: 'Enter the branch name for deployment (e.g., dev)'
+        description: 'Branch name'
         required: true
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        default: 'production' # Default value if not provided
         
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
