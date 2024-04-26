@@ -1,4 +1,4 @@
-name: Build and Deploy     
+name: Build and Deploy
 on:
   workflow_dispatch:
     inputs:
@@ -15,12 +15,12 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        branch: '[${{ github.event.inputs.branch_name }}]' 
+        branch: ['${{ github.event.inputs.branch_name }}']  # Note the quotes around the expression
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         
-      - name: Check the branch and select the envirnoment
+      - name: Check the branch and select the environment
         id: branch_check
         run: |
           echo "Running on branch ${{ github.ref }}"
@@ -32,6 +32,4 @@ jobs:
             echo "env_name=dev" >> $GITHUB_OUTPUT            
           fi
       - name: Use variable setup in previous step
-        run: echo "Using envirnoment ${{ steps.branch_check.outputs.env_name }}"
-    outputs:
-      env_name: ${{ steps.branch_check.outputs.env_name }}  
+        run: echo "Using environment ${{ steps.branch_check.outputs.env_name }}"
