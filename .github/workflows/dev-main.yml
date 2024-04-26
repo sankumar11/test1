@@ -1,8 +1,7 @@
 name: Build and Deploy
 on:
+  push:
   workflow_dispatch:
-  release:
-    types: [created]  
     inputs:
       branch_name:
         description: 'Branch name'
