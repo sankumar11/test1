@@ -1,0 +1,23 @@
+name: Build and Deploy
+on:      
+  workflow_dispatch:
+             
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  envbranch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        
+      - name: Check the branch and select the envirnoment
+        id: branch_check
+        run: |
+          echo "Running on branch ${{ github.ref }}"
+          if [ "${{ github.ref }}" = "refs/heads/main" ]; then  
+            echo "env_name=Prod" >> $GITHUB_OUTPUT
+          fi
+      - name: Use variable setup in previous step
+        run: echo "Using envirnoment ${{ steps.branch_check.outputs.env_name }}"
+    outputs:
+      env_name: ${{ steps.branch_check.outputs.env_name }}  
