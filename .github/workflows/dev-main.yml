@@ -1,11 +1,8 @@
 name: Dev Build and Deploy
 on:
-  # Triggers the workflow on push to matching branches
-  push:
-    branches:
-      - dev
-      
   workflow_dispatch:
+#    branches:
+#      - dev
              
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
