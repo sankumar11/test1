@@ -23,12 +23,12 @@ jobs:
       - name: Check the branch and select the environment
         id: branch_check
         run: |
-          echo "Running on branch ${{ github.ref }}"
-          if [ "${{ github.ref }}" = "refs/heads/main" ]; then  
+          echo "Running on branch ${{ github.event.inputs.branch_name }}"
+          if [ "${{ github.event.inputs.branch_name }}" = "main" ]; then  
             echo "env_name=Prod" >> $GITHUB_OUTPUT
-          elif [ "${{ github.ref }}" = "refs/heads/qa" ]; then    
+          elif [ "${{ github.event.inputs.branch_name }}" = "qa" ]; then    
             echo "env_name=QA" >> $GITHUB_OUTPUT
-          elif [ "${{ github.ref }}" = "refs/heads/dev" ]; then    
+          elif [ "${{ github.event.inputs.branch_name }}" = "dev" ]; then    
             echo "env_name=dev" >> $GITHUB_OUTPUT            
           fi
       - name: Use variable setup in previous step
