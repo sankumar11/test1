@@ -24,6 +24,10 @@ jobs:
           echo "Running on branch ${{ github.ref }}"
           if [ "${{ github.ref }}" = "refs/heads/main" ]; then  
             echo "env_name=Prod" >> $GITHUB_OUTPUT
+          elif [ "${{ github.ref }}" = "refs/heads/qa" ]; then    
+            echo "env_name=QA" >> $GITHUB_OUTPUT
+          elif [ "${{ github.ref }}" = "refs/heads/dev" ]; then    
+            echo "env_name=dev" >> $GITHUB_OUTPUT            
           fi
       - name: Use variable setup in previous step
         run: echo "Using envirnoment ${{ steps.branch_check.outputs.env_name }}"
