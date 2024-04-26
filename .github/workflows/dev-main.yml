@@ -1,13 +1,10 @@
 name: Dev Build and Deploy
 on:
-  push:
-    branches:
-    - dev
   workflow_dispatch:
-#    inputs:
-#      branch_name:
-#        description: 'dev'
-#        required: true
+    inputs:
+      branch_name:
+        description: 'dev'
+        required: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
