@@ -1,7 +1,11 @@
 name: Build and Deploy
 on:      
   workflow_dispatch:
-             
+    inputs:
+      branch_name:
+        description: 'Enter the branch name for deployment (e.g., dev)'
+        required: true
+        
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   envbranch:
