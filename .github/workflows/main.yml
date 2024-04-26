@@ -36,3 +36,14 @@ jobs:
           fi
       - name: I am in main
         run: echo "I am in main"
+  create-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: Create tag
+        run: git tag -a v1.0 -m "Version 1.0"
+        
+      - name: Push tag to repository
+        run: git push origin v1.0
