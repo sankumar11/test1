@@ -29,3 +29,5 @@ jobs:
           fi
       - name: Use variable setup in previous step
         run: echo "Using environment ${{ steps.branch_check.outputs.env_name }}"
+      - name: I am in dev
+        run: echo "I am in dev"
