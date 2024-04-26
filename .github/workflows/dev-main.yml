@@ -1,28 +1,31 @@
-name: Dev Build and Deploy
+name: Build and Deploy
 on:
   workflow_dispatch:
     inputs:
       branch_name:
-        description: 'Enter the branch name for deployment (e.g., dev)'
+        description: 'Branch name'
         required: true
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+        
 jobs:
   envbranch:
-#    if: github.ref == 'refs/heads/dev' && github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        branch: ['${{ github.event.inputs.branch_name }}']  # Note the quotes around the expression
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         
-      - name: Check the branch and select the envirnoment
+      - name: Check the branch and select the environment
         id: branch_check
         run: |
-          echo "Running on branch ${{ github.ref }}"
-          if [ "${{ github.ref }}" = "refs/heads/dev" ]; then  
-            echo "env_name=dev" >> $GITHUB_OUTPUT
+          echo "Running on branch ${{ github.event.inputs.branch_name }}"
+          if [ "${{ github.event.inputs.branch_name }}" = "main" ]; then  
+            echo "env_name=Prod" >> $GITHUB_OUTPUT
+          elif [ "${{ github.event.inputs.branch_name }}" = "qa" ]; then    
+            echo "env_name=QA" >> $GITHUB_OUTPUT
+          elif [ "${{ github.event.inputs.branch_name }}" = "dev" ]; then    
+            echo "env_name=dev" >> $GITHUB_OUTPUT            
           fi
       - name: Use variable setup in previous step
-        run: echo "Using envirnoment ${{ steps.branch_check.outputs.env_name }}"
-    outputs:
-      env_name: ${{ steps.branch_check.outputs.env_name }}  
+        run: echo "Using environment ${{ steps.branch_check.outputs.env_name }}"
