@@ -42,6 +42,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
       
+      - name: Set up Git
+        run: |
+          git config --global user.email "sankumar.549@gmail.com"
+          git config --global user.name "Sandeep Kumar"
+      
       - name: Create tag
         run: git tag -a v1.0 -m "Version 1.0"
         
