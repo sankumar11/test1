@@ -40,7 +40,7 @@ jobs:
     environment:
       name: Prod
     env:
-      duplo_token: "${{ secrets.GIT_TOKEN }}"
+      GIT_TOKEN: "${{ secrets.GIT_TOKEN }}"
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -50,12 +50,12 @@ jobs:
           git branch
           git config --global user.email "sankumar.549@gmail.com"
           git config --global user.name "sankumar11"
-          git config --local credential.helper store 
+          git config --global credential.helper store 
       - name: Create tag
         run: |
           git tag -a v2.0 -m "Version v2.0"
           git tag
-          git push origin v2.0
+          git push origin v2.0 --follow-tags --force
         
 #      - name: Push tag to repository
 #        run: git push origin v2.0
