@@ -50,10 +50,23 @@ jobs:
           git branch
           git config --global user.email "sankumar.549@gmail.com"
           git config --global user.name "sankumar11"
+      - name: Generate-random-tag-name
+        id: random_tag
+        run: echo "v$(date +'%Y%m%d%H%M%S')"
+        
       - name: Create tag
         run: |
-          git tag -a v4.0 -m "Version v4.0"
+          git tag -a ${{ steps.random_tag.outputs.stdout }} -m "Version ${{ steps.random_tag.outputs.stdout }}"
           git tag
-        
+      
       - name: Push tag to repository
-        run: git push origin v4.0
+        run: git push origin ${{ steps.random_tag.outputs.stdout }}
+
+          
+#      - name: Create tag
+#        run: |
+#          git tag -a v4.0 -m "Version v4.0"
+#          git tag
+        
+#      - name: Push tag to repository
+#        run: git push origin v4.0
