@@ -52,12 +52,12 @@ jobs:
           git config --global user.name "sankumar11"
 #          git config --global credential.helper store 
       - name: Create tag
-        env:
-          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
         run: |
-          git tag -a v2.0 -m "Version v2.0"
+          git tag -a v3.0 -m "Version v3.0"
           git tag
-          git push origin v2.0 --follow-tags --force
+          git push origin v3.0
         
 #      - name: Push tag to repository
 #        run: git push origin v2.0
