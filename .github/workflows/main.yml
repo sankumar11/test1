@@ -52,8 +52,8 @@ jobs:
           git config --global user.name "sankumar11"
       - name: Create tag
         run: |
-          git tag -a v3.0 -m "Version v3.0"
+          git tag -a v4.0 -m "Version v4.0"
           git tag
         
       - name: Push tag to repository
-        run: git push origin v2.0
+        run: git push origin v4.0
