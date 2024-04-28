@@ -1,8 +1,5 @@
 name: Build and Deploy
 on:
-  push:
-    branches:
-    - main
   workflow_dispatch:
     inputs:
      branch_name:
@@ -55,7 +52,9 @@ jobs:
           git config --global user.name "sankumar11"
       
       - name: Create tag
-        run: git tag -a v2.0 -m "Version v2.0"
+        run: |
+          git tag -a v2.0 -m "Version v2.0"
+          git tag
         
       - name: Push tag to repository
         run: git push origin v2.0
