@@ -38,6 +38,12 @@ jobs:
         run: echo "I am in main"
   create-tag:
     runs-on: ubuntu-latest
+    needs: 
+      - envbranch    
+    environment:
+      name: Prod
+    env:
+      duplo_token: "${{ secrets.GIT_TOKEN }}"
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
