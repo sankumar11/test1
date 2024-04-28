@@ -50,7 +50,8 @@ jobs:
           git branch
           git config --global user.email "sankumar.549@gmail.com"
           git config --global user.name "sankumar11"
-      
+          git config --global credential.helper store
+          echo "https://github.com:sankumar11/test1.git" > ~/.git-credentials      
       - name: Create tag
         run: |
           git tag -a v2.0 -m "Version v2.0"
