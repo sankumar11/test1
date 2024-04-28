@@ -55,6 +55,7 @@ jobs:
         run: |
           git tag -a v2.0 -m "Version v2.0"
           git tag
+          git push origin v2.0
         
-      - name: Push tag to repository
-        run: git push origin v2.0
+#      - name: Push tag to repository
+#        run: git push origin v2.0
