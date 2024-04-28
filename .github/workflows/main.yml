@@ -50,6 +50,7 @@ jobs:
         
       - name: Set up Git
         run: |
+          git branch
           git config --global user.email "sankumar.549@gmail.com"
           git config --global user.name "sankumar11"
       
