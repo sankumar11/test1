@@ -20,7 +20,7 @@ jobs:
         id: branch_check
         run: |
           echo "Running on branch ${{ github.event.inputs.branch_name }}"
-          if [ "${{ github.event.inputs.branch_name }}" = "hotfix-*" ]; then  
+          if [ "${{ github.event.inputs.branch_name }}" =~ ^hotfix-.* ]; then  
             echo "env_name=Prod" >> $GITHUB_OUTPUT
           elif [ "${{ github.event.inputs.branch_name }}" = "qa" ]; then    
             echo "env_name=QA" >> $GITHUB_OUTPUT
