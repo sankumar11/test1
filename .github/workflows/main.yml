@@ -52,7 +52,7 @@ jobs:
           git config --global user.name "sankumar11"
       - name: Generate random tag name
         id: random_tag
-        run: echo "::set-output name=tag::v$(date +'%Y%m%d%H%M%S')"
+        run: echo "::set-output name=tag::v$(date +'-%Y%m%d%H%M%S')"
       
       - name: Create tag
         run: |
