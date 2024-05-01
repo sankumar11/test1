@@ -1,10 +1,10 @@
 name: Build and Deploy
 on:
   workflow_dispatch:
-    inputs:
-     branch_name:
-        description: 'Branch name'
-        required: true
+#    inputs:
+#     branch_name:
+#        description: 'Branch name'
+#        required: true
 
 jobs:
   envbranch:
@@ -19,7 +19,7 @@ jobs:
       - name: Check the branch and select the environment
         id: branch_check
         run: |
-          case "${{ github.event.inputs.branch_name }}" in
+          case "${{ github.ref }}" in
           hotfix/*) echo "env_name=UAT" >> $GITHUB_OUTPUT ;;
           qa) echo "env_name=QA" >> $GITHUB_OUTPUT ;;
           esac
