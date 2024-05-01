@@ -20,7 +20,7 @@ jobs:
         id: branch_check
         run: |
           case "${{ github.event.inputs.branch_name }}" in
-          hotfix-*) echo "env_name=UAT" >> $GITHUB_OUTPUT ;;
+          hotfix/*) echo "env_name=UAT" >> $GITHUB_OUTPUT ;;
           qa) echo "env_name=QA" >> $GITHUB_OUTPUT ;;
           esac
 #      - name: I am in "${{ steps.branch_check.outputs.env_name }}"
