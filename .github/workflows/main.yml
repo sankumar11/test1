@@ -1,17 +1,11 @@
 name: Build and Deploy
+
 on:
   workflow_dispatch:
-#    inputs:
-#     branch_name:
-#        description: 'Branch name'
-#        required: true
 
 jobs:
   envbranch:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        branch: ['${{ github.event.inputs.branch_name }}']  # Note the quotes around the expression
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -19,8 +13,9 @@ jobs:
       - name: Check the branch and select the environment
         id: branch_check
         run: |
-          case "${{ github.ref }}" in
-          hotfix/*) echo "env_name=UAT" >> $GITHUB_OUTPUT ;;
+          branch_name=$(echo "${{ github.ref }}" | awk -F/ '{print $NF}')
+          case "$branch_name" in
+          hotfix*) echo "env_name=UAT" >> $GITHUB_OUTPUT ;;
           qa) echo "env_name=QA" >> $GITHUB_OUTPUT ;;
           esac
 #      - name: I am in "${{ steps.branch_check.outputs.env_name }}"
