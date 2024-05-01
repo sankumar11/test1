@@ -19,14 +19,10 @@ jobs:
       - name: Check the branch and select the environment
         id: branch_check
         run: |
-          echo "Running on branch ${{ github.event.inputs.branch_name }}"
-          if [ "${{ github.event.inputs.branch_name }}" =~ ^hotfix-.* ]; then  
-            echo "env_name=Prod" >> $GITHUB_OUTPUT
-          elif [ "${{ github.event.inputs.branch_name }}" = "qa" ]; then    
-            echo "env_name=QA" >> $GITHUB_OUTPUT
-          elif [ "${{ github.event.inputs.branch_name }}" = "dev" ]; then    
-            echo "env_name=dev" >> $GITHUB_OUTPUT            
-          fi
+          case "${{ github.event.inputs.branch_name }}" in
+          hotfix-*) echo "env_name=UAT" >> $GITHUB_OUTPUT ;;
+          qa) echo "env_name=QA" >> $GITHUB_OUTPUT ;;
+          esac
 #      - name: I am in "${{ steps.branch_check.outputs.env_name }}"
       - name: Use variable setup in previous step
         run: echo "Using envirnoment ${{ steps.branch_check.outputs.env_name }}"      
