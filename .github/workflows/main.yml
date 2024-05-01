@@ -20,7 +20,8 @@ jobs:
           esac
       
       - name: Use variable setup in previous step
-        run: echo "Using environment $env_name"
+        run: |
+          echo "Using environment ${{ env.env_name }}"
         
 #      - name: I am in "${{ steps.branch_check.outputs.env_name }}"
       - name: Use variable setup in previous step
