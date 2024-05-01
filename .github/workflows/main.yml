@@ -5,11 +5,11 @@ on:
      branch_name:
         description: 'Branch name'
         required: true
-        type: choice
-        options:
-        - main
-        - qa
-        - dev
+#        type: choice
+#        options:
+#        - main
+#        - qa
+#        - dev
 jobs:
   envbranch:
     runs-on: ubuntu-latest
