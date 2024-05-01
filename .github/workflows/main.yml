@@ -15,9 +15,13 @@ jobs:
         run: |
           branch_name=$(echo "${{ github.ref }}" | awk -F/ '{print $NF}')
           case "$branch_name" in
-          hotfix*) echo "env_name=UAT" >> $GITHUB_OUTPUT ;;
-          qa) echo "env_name=QA" >> $GITHUB_OUTPUT ;;
+          hotfix*) echo "env_name=UAT" >> $GITHUB_ENV ;;
+          qa) echo "env_name=QA" >> $GITHUB_ENV ;;
           esac
+      
+      - name: Use variable setup in previous step
+        run: echo "Using environment $env_name"
+        
 #      - name: I am in "${{ steps.branch_check.outputs.env_name }}"
       - name: Use variable setup in previous step
         run: echo "Using envirnoment ${{ steps.branch_check.outputs.env_name }}"      
